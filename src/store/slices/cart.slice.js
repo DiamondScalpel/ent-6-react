@@ -15,7 +15,7 @@ const cart = createSlice({
     }
 });
 
-export const { setCart } = cart.actions;
+export const { setCart, addCart, delCart } = cart.actions;
 
 export default cart.reducer;
 
@@ -29,6 +29,6 @@ export const getCartThunk = (path) => (dispatch) => {
 export const postCartThunk = (path, data) => dispatch => {
     const url = `${urlBase}${path}}`;
     axios.post(url, data, getToken())
-        .then(res => console.log(res.data))
+        .then(res => dispatch(addCart(res.data)))
         .catch(err => console.log(err));
 }
