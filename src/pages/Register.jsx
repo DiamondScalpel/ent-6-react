@@ -8,17 +8,21 @@ const Register = () => {
 
   const {handleSubmit, register, reset} = useForm();
 
-  const submit = data => {
+  const submit = async (data) => {
     const url = 'https://e-commerce-api-v2.academlo.tech/api/v1/users';
-    createUser(url, data);
+
+    console.log('Intento de registro de usuario');
+    console.log(data);
+
+    await createUser(url, data);
     reset({
       firstName:'',
       lastName:'',
       email:'',
       password:'',
       phone:'',
-    })
-  }
+    });
+  };
 
   return (
     <div>

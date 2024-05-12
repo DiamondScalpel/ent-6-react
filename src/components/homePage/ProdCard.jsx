@@ -1,8 +1,12 @@
 import React from 'react';
 import './styles/prodCard.css'
 import { useNavigate } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import { postCartThunk } from '../../store/slices/cart.slice';
 
 const ProdCard = ({prod}) => {
+
+    const dispatch = useDispatch();
 
     const navigate = useNavigate();
 
@@ -11,7 +15,10 @@ const ProdCard = ({prod}) => {
     }
 
     const handleBuy = () => {
-      //
+      dispatch(postCartThunk('/cart', {
+        quantity: 1,
+        productId: prod.id,
+      }));
     }
 
   return (
